@@ -6,47 +6,90 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Youtube Search API</title>
    <style>
- 
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #f9f9f9;
+        padding: 2rem 4rem;
+      }
+     
+     .main {
+       background: #fff;
+       margin: 0 auto;
+       padding-bottom: 3rem;
+       box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14);
+       border-radius: 4px;
+     }
+     .header {
+       padding: 2rem;
+       display: flex;
+     }
+     .form-container {
+      width: 600px;
+      margin: 0 auto;
+     }
+     .search-box {
+      align-items: center;
+      border: 1px solid #ccc;
+      border-radius: 2px 0 0 2px;
+      box-shadow: inset 0 1px 2px #eee;
+      padding: 2px 6px;
+      width: 550px;
+      height: 30px;
+     }
+     .videos-container {
+      background: #f9f9f9;
+      margin: 0rem 7rem;
+      padding:  1rem 1rem 4rem 1rem;
+     }
+     .divider {
+      background: #ccc;
+      height: 1px;
+      margin: 2.5rem 7rem 1.5rem 7rem;
+     }
+     .video-container {
+       display: flex;
+       justify-content: space-between;
+       height: 202px;
+       margin: 0rem 7rem;
+       margin-top: 1rem;
+     }
+     .video-thumbnail-container {
+       width: 34%;
+       height: 100%;
+       outline: 1px solid orange;
+     }
+     .video-data-container {
+       width: 64%;
+       height: auto;
+       outline: 1px solid orange;
+     }
    </style>
 </head>
 <body>
-  <div class="main"></div>
-  <div class="video-container">
-    
+  <div class="main">
+    <div class="header">
+      <img src="./images/youtubeLogo.png" width="90" height="20" alt="Youtube Logo">
+      <div class="form-container">
+        <form action="">
+          <input type="text" placeholder="Search" class="search-box">
+        </form>
+      </div>
+    </div>
+    <div class="videos-container">
+      <div class="divider"></div>
+      <div class="video-container">
+        <div class="video-thumbnail-container">image here</div>
+        <div class="video-data-container">video data</div>
+      </div>
+    </div>
   </div>
-   <script>
-       const apiKey = 'AIzaSyAP_2CK1-y8YPJCJ61Vf0iJXfZCg1ppxHY';
-       const base = 'https://www.googleapis.com/youtube/v3/';
-       const fullRequest = 'https://www.googleapis.com/youtube/v3/search?part=snippet&q=running&key=AIzaSyAP_2CK1-y8YPJCJ61Vf0iJXfZCg1ppxHY'
-       // example of a working request (search term is 'running')    https://www.googleapis.com/youtube/v3/search?part=snippet&q=running&key=AIzaSyAP_2CK1-y8YPJCJ61Vf0iJXfZCg1ppxHY
-     
-       let main = document.querySelector('div.main');
-       let xhttp = new XMLHttpRequest();
-       xhttp.onreadystatechange = function() {
-       if (this.readyState == 4 && this.status == 200) {
-           let html = '';
-           let data = JSON.parse(xhttp.responseText);
-           console.log(data)
-          
-           //this loop actually makes the divs
-           for (let video of data.items) {
-             html = `
-             <div class="video-container">
-               ${video.snippet.title}
-             </div>
-             `;
-             main.innerHTML += html;
-           console.log(video)
-           }  
-          
-     
-       }
-         
-       };
-       xhttp.open("GET","https://www.googleapis.com/youtube/v3/search?part=snippet&q=the+chosen&key=AIzaSyAP_2CK1-y8YPJCJ61Vf0iJXfZCg1ppxHY", true);
-       xhttp.send();
- 
-   </script>
+  
+  
+   
 </body>
 </html>
 
